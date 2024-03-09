@@ -108,11 +108,12 @@ namespace Configurator
         /// <typeparam name="T">The type of the tunable value.</typeparam>
         /// <param name="key">The key of the tunable value.</param>
         /// <param name="value">The value of the tunable.</param>
-        public static void SetValue<T>(string key, T value)
+        /// <param name="notify">Whether to notify listeners of the change.</param>
+        public static void SetValue<T>(string key, T value, bool notify = true)
         {
             IAccessor accessor = GetAccessor<T>(key);
             accessor.Value = value;
-            OnChange?.Invoke(new Tunable(accessor, key));
+            if (notify) { OnChange?.Invoke(new Tunable(accessor, key)); }
         }
 
         /// <summary>
