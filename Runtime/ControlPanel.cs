@@ -32,6 +32,9 @@ namespace Configurator
 
         // Defining static properties to control some basic global game settings
 
+        /// <summary>
+        /// Whether the game is running in fullscreen mode.
+        /// </summary>
         [Tunable("fullscreen")]
         public static bool FullScreen
         {
@@ -39,6 +42,9 @@ namespace Configurator
             set => Screen.fullScreen = value;
         }
 
+        /// <summary>
+        /// The resolution width of the game window.
+        /// </summary>
         [Tunable("resolutionX")]
         public static int ResolutionX
         {
@@ -46,6 +52,9 @@ namespace Configurator
             set => Screen.SetResolution(value, Screen.height, Screen.fullScreen);
         }
 
+        /// <summary>
+        /// The resolution height of the game window.
+        /// </summary>
         [Tunable("resolutionY")]
         public static int ResolutionY
         {
