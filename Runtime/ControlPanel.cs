@@ -30,6 +30,29 @@ namespace Configurator
         /// </summary>
         public static event ControlPanelDelegate OnSave;
 
+        // Defining static properties to control some basic global game settings
+
+        [Tunable("fullscreen")]
+        public static bool Fullscreen
+        {
+            get => Screen.fullScreen;
+            set => Screen.fullScreen = value;
+        }
+
+        [Tunable("resolutionX")]
+        public static int ResolutionX
+        {
+            get => Screen.width;
+            set => Screen.SetResolution(value, Screen.height, Screen.fullScreen);
+        }
+
+        [Tunable("resolutionY")]
+        public static int ResolutionY
+        {
+            get => Screen.height;
+            set => Screen.SetResolution(Screen.width, value, Screen.fullScreen);
+        }
+
         static ControlPanel()
         {
             _accessors = new Dictionary<string, IAccessor>();
