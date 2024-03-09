@@ -1,5 +1,5 @@
 {
-    "name": "Unity.com.{{COMPANY}}.{{REPOSITORY_NAME}}.Editor",
+    "name": "Unity.com.william-brocklesby.unity-configurator.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"
