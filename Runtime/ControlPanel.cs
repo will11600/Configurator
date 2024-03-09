@@ -33,7 +33,7 @@ namespace Configurator
         // Defining static properties to control some basic global game settings
 
         [Tunable("fullscreen")]
-        public static bool Fullscreen
+        public static bool FullScreen
         {
             get => Screen.fullScreen;
             set => Screen.fullScreen = value;
