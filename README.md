@@ -19,7 +19,64 @@ This package provides a flexible and extensible framework for creating customiza
 
 ## How to use
 
-*Work In Progress*
+1.  **Defining Tunables**
+
+    *   Add the `using Configurator` namespace to your C# scripts.
+    *   Apply the `[Tunable]` attribute to static properties or fields within your classes to make them adjustable. Example:
+
+        ```csharp
+        public class GameSettings
+        {
+            [Tunable("masterVolume")]
+            public static float MasterVolume { get; set; } = 0.8f;
+
+            [Tunable("difficulty")] 
+            public static int DifficultyLevel { get; set; } = 1;  
+        }
+        ```
+
+2.  **Accessing and Modifying Tunables**
+
+    *   Use the `Configurator.ControlPanel` class to get and set values:
+
+        ```csharp
+        using Configurator;
+
+        // Get the current difficulty level
+        int currentDifficulty = ControlPanel.GetValue<int>("difficulty"); 
+
+        // Increase the master volume
+        ControlPanel.SetValue<float>("masterVolume", 0.95f); 
+        ```
+
+3.  **Subscribing to Changes**
+
+    *   Subscribe to the `Configurator.ControlPanel.OnChange` event to react when tunable values change:
+
+        ```csharp
+        using Configurator;
+
+        ControlPanel.OnChange += (tunable) => {
+            if (tunable.Key == "masterVolume") 
+            {
+                // Update audio mixer based on new volume
+            }
+        };
+        ```
+
+4.  **Saving and Loading Settings**
+
+    * **Using PlayerPrefs:** For basic settings persistence, leverage the built-in `PlayerPrefsConfigurationManager`:
+
+       ```csharp
+       // Save settings
+       Configurator.ControlPanel.Save<PlayerPrefsConfigurationManager>(); 
+  
+       // Load settings
+       Configurator.ControlPanel.Load<PlayerPrefsConfigurationManager>(); 
+       ```
+
+    * **Custom Persistence:** For more complex data or alternative storage backends, provide your own implementation of the `IConfigurationManager` interface.
 
 ## Install
 
