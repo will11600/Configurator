@@ -14,9 +14,6 @@ on:
     branches:
       - main
 
-env:
-  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-
 jobs:
   Tests:
     name: Run in ${{ matrix.testMode }} on v. ${{ matrix.unityVersion }}
@@ -38,6 +35,8 @@ jobs:
           restore-keys: |
             Library-
       - uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         name: Run tests
         id: tests
         with:
